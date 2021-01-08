@@ -1,1 +1,25 @@
-# Corpus-Linguistics-Working-Group
+# Corpus Linguistics Working Group
+Winter 2021
+
+University of Oregon, Linguistics Department
+
+## Schedule
+- Week 1 (Kris): Getting Organized
+	- Homework:
+	- Sign up for a Github account
+	- Create a sample repository
+	- Take a look at the [markdown guidelines](https://www.markdownguide.org/getting-started/) (I promise, it is super easy)
+- Week 2 (Wesley): TBD
+- Week 3 (Masaki): TBD
+- Week 4 (Keegan): TBD
+- Week 5 (Cece): TBD
+- Week 6 (Shayleen): TBD
+- Week 7 (Brittany): TBD
+- Week 8 (Ksenia): TBD
+- Week 9 (Min): TBD
+- Week 10 (Sabine): TBD
+
+## Resources (readings, code, etc.)
+- [Markdown Cheatsheet](https://www.markdownguide.org/cheat-sheet/)
+- [GitHub Pages Information](https://pages.github.com/)
+- More to be added as the term progresses
