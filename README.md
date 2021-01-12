@@ -9,7 +9,7 @@ University of Oregon, Linguistics Department
 	- Sign up for a Github account
 	- Create a sample repository
 	- Take a look at the [markdown guidelines](https://www.markdownguide.org/getting-started/) (I promise, it is super easy)
-- Week 2 (Wesley): TBD
+- Week 2 (Wesley): [Prospects for a (Semi-)Automated Papuan Comparative Linguistics and Reconstruction (Hammarström, 2019)](https://github.com/kristopherkyle/Corpus-Linguistics-Working-Group/raw/main/docs/Hammarstr%C3%B6m_2019.pdf)
 - Week 3 (Masaki): TBD
 - Week 4 (Keegan): TBD
 - Week 5 (Cece): TBD
