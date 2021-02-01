@@ -13,7 +13,7 @@ University of Oregon, Linguistics Department
 - Week 3 (Masaki): [A corpus-driven approach to formulaic language in English
 Multi-word patterns in speech and writing (Biber, 2009).](https://www.jbe-platform.com/content/journals/10.1075/ijcl.14.3.08bib) Note, skim this article for background; Workshop will be extracting formulaic language beyond n-grams.
 - Week 4 (Keegan): [Galves et al. 2017: Annotating a Polysynthetic Language](https://github.com/kristopherkyle/Corpus-Linguistics-Working-Group/raw/main/docs/Galves_et_al_2017.pdf)
-- Week 5 (Cece): TBD
+- Week 5 (Cece): [Corpora, Databases, and Internet Resources: Corpus Phonology with Speech Resources Using The Internet For Collecting Phonological Data Speech Manipulation, Synthesis, and Automatic Recognition in Laboratory Phonology Phonotactic Patterns in Lexical Corpora](https://github.com/kristopherkyle/Corpus-Linguistics-Working-Group/raw/main/docs/ColeHasegawa-Johnson_Handbook_Laboratory_Phonology_Ch19.pdf)
 - Week 6 (Shayleen): TBD
 - Week 7 (Brittany): TBD
 - Week 8 (Ksenia): TBD
