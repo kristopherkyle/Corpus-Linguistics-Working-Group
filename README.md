@@ -20,6 +20,12 @@ Multi-word patterns in speech and writing (Biber, 2009).](https://www.jbe-platfo
 - Week 9 (Min): TBD
 - Week 10 (Sabine): TBD
 
+## Small Project for Weeks 7-10: Part of Speech (POS) Tagging
+Note that the resources shared below come from a course on Applied Natural Language Processing that I taught at UH in 2018. They may not be as scaffolded as the corpus linguistics tutorials I created for last term, so I will clarify as needed :). Note that you will need to install the [NLTK Package](https://www.nltk.org/) and be sure to download the "book" data [see instructions here](https://www.nltk.org/data.html). Note that you should be able to install NLTK in the Anaconda Terminal/Command Prompt using "pip install -U nltk" (Windows). On a Mac, you should be able to use the same command in Terminal.
+
+[Brief intro to POS tagging](https://github.com/kristopherkyle/Corpus-Linguistics-Working-Group/raw/main/docs/680R_W9_D1_POS_intro.slides.html)
+[Building a basic tagger](https://github.com/kristopherkyle/Corpus-Linguistics-Working-Group/raw/main/docs/680R_W9_D2_POS_Features.slides.html)
+
 ## Resources (readings, code, etc.)
 - [Markdown Cheatsheet](https://www.markdownguide.org/cheat-sheet/)
 - [GitHub Pages Information](https://pages.github.com/)
