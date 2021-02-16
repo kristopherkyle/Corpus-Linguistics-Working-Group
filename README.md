@@ -22,9 +22,7 @@ preliminary issues & steps (Weisser, 2017)](https://github.com/kristopherkyle/Co
 - Week 10 (Sabine): TBD
 
 ## Small Project for Weeks 7-10: Part of Speech (POS) Tagging
-Note that the resources shared below come from a course on Applied Natural Language Processing that I taught at UH in 2018. They may not be as scaffolded as the corpus linguistics tutorials I created for last term, so I will clarify as needed :). Note that you will need to install the [NLTK Package](https://www.nltk.org/) and be sure to download the "book" data [see instructions here](https://www.nltk.org/data.html). Note that you should be able to install NLTK in the Anaconda Terminal/Command Prompt using "pip install -U nltk" (Windows). On a Mac, you should be able to use the same command in Terminal.
-
-- [POS Tagging 1 - Introduction to POS Tagging](pos_tagging_1.md)
+- [Week 7 - Introduction to POS Tagging](pos_tagging_1.md)
 
 ## Resources (readings, code, etc.)
 - [Markdown Cheatsheet](https://www.markdownguide.org/cheat-sheet/)
