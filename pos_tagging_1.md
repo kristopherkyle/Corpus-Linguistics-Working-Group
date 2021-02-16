@@ -208,3 +208,124 @@ print(tested_simple_1)
 ```
 
 As we can see, our extremely simple model achieved an overall tagging accuracy of 67.77% on new data. Not too shabby! Next, we will increase the accuracy by using the most probably tags for known words, and the most common tag in the corpus for unknown words.
+
+### Adding features: Most likely tag for ambiguous known words
+
+Now, we will create a dictionary that includes word:tag pairs for known words and their most frequently occurring tags. Then we will see how much it improved our model.
+
+```python
+import operator
+def sort_tags(freq, only_top = True):
+	sort_freq = {}
+	for x in freq: #iterate through dictionary
+		if only_top == True:
+			sort_freq[x] = sorted(freq[x].items(),key=operator.itemgetter(1), reverse = True)[0][0] #get most frequent tag
+		else:
+			sort_freq[x] = sorted(freq[x].items(),key=operator.itemgetter(1), reverse = True)#so we can see all tags if we want
+
+	return(sort_freq)
+
+top_hits = sort_tags(word_tags) #get dictionary of word:top_tag pairs
+
+print(word_tags["run"]) #all hits
+print(top_hits["run"]) #top hit
+
+```
+
+```
+> {'VBP': 18, 'VB': 65, 'NN': 34, 'VBN': 21}
+> VB #run
+```
+
+Now, we can add a line to our tagger and then check the accuracy. We will still choose NOT to tag unknown words (they will get "none").
+
+```python
+def simple_model_2(sent_to_tag,unam_d,known_d):
+	tagged = []
+	for x in sent_to_tag:
+		word = x["word"]
+		if word in unam_d: #if the word is unambiguous, assign the tag
+			tagged.append({"word": word, "pos": unam_d[word]})
+		#this is new in model 2:
+		elif word in known_d:
+			tagged.append({"word": word, "pos": known_d[word]})
+		else: #else, assign tag as "none"
+			tagged.append({"word": word, "pos": "none"})
+
+	return(tagged)
+
+def simple_model_2_doc(doc_to_tag,unam_d,known_d):
+	tagged = []
+	for sent in doc_to_tag:
+		tagged.append(simple_model_2(sent,unam_d,known_d))
+
+	return(tagged)
+
+test_simple_2_tagged = simple_model_2_doc(test_data,unambiguous,top_hits)
+print(test_simple_2_tagged[0])
+```
+
+```
+> [{'word': 'The', 'pos': 'DT'}, {'word': 'partners', 'pos': 'NNS'}, {'word': 'each', 'pos': 'DT'}, {'word': 'bring', 'pos': 'VB'}, {'word': 'to', 'pos': 'TO'}, {'word': 'it', 'pos': 'PRP'}, {'word': 'unselfish', 'pos': 'none'}, {'word': 'love', 'pos': 'NN'}, {'word': ',', 'pos': ','}, {'word': 'and', 'pos': 'CC'}, {'word': 'each', 'pos': 'DT'}, {'word': 'takes', 'pos': 'VBZ'}, {'word': 'away', 'pos': 'RB'}, {'word': 'an', 'pos': 'DT'}, {'word': 'equal', 'pos': 'JJ'}, {'word': 'share', 'pos': 'NN'}, {'word': 'of', 'pos': 'IN'}, {'word': 'pleasure', 'pos': 'NN'}, {'word': 'and', 'pos': 'CC'}, {'word': 'joy', 'pos': 'NN'}, {'word': '.', 'pos': '.'}]
+```
+
+Now, we can check the accuracy using our previous accuracy check code. As we see below, we are now getting over 91% accuracy with our simple tagger.
+
+```python
+tested_simple_2 = accuracy_doc(test_data,test_simple_2_tagged)
+print(tested_simple_2)
+```
+
+```
+> {'correct': 351315, 'false': 34399, 'acc': 0.9108173413461788}
+```
+
+### Adding features: Most likely tag for unknown words
+
+Now, we will check to see what the most frequent tag in the training set is. For unknown words, we will use the most probably tag in the corpus.
+
+```python
+def item_freq(data_set,item_name):
+	freq = {}
+	for sent in data_set:
+		for item in sent:
+			freq_add(item[item_name],freq)
+	return(freq)
+
+
+pos_freq = item_freq(train_data,"pos") #get frequency of tags
+
+pos_freq_sort = sorted(pos_freq.items(), key=operator.itemgetter(1), reverse = True) #sort tags
+
+print(pos_freq_sort[:10]) #most frequent is NN
+```
+
+```
+[('NN', 108064), ('IN', 91547), ('DT', 77742), ('JJ', 51659), ('NNP', 41681), (',', 39056), ('NNS', 37448), ('.', 37263), ('RB', 34656), ('PRP', 31712)]
+```
+
+Now that we know that the most frequent tag is "NN", we will update our tagger to deal with unknown words (if rather poorly).
+
+```python
+test_simple_3_tagged = simple_model_3_doc(test_data,unambiguous,top_hits,"NN")
+print(test_simple_3_tagged[0])
+```
+
+```
+> [{'word': 'The', 'pos': 'DT'}, {'word': 'partners', 'pos': 'NNS'}, {'word': 'each', 'pos': 'DT'}, {'word': 'bring', 'pos': 'VB'}, {'word': 'to', 'pos': 'TO'}, {'word': 'it', 'pos': 'PRP'}, {'word': 'unselfish', 'pos': 'NN'}, {'word': 'love', 'pos': 'NN'}, {'word': ',', 'pos': ','}, {'word': 'and', 'pos': 'CC'}, {'word': 'each', 'pos': 'DT'}, {'word': 'takes', 'pos': 'VBZ'}, {'word': 'away', 'pos': 'RB'}, {'word': 'an', 'pos': 'DT'}, {'word': 'equal', 'pos': 'JJ'}, {'word': 'share', 'pos': 'NN'}, {'word': 'of', 'pos': 'IN'}, {'word': 'pleasure', 'pos': 'NN'}, {'word': 'and', 'pos': 'CC'}, {'word': 'joy', 'pos': 'NN'}, {'word': '.', 'pos': '.'}]
+```
+
+Now, we will check how much our accuracy improved. As we will see, the model didn't improve very much (though we did get 2,000 more tags correct). The final verdict: Our very simple model achieves 91.69% overall accuracy.
+
+```python
+tested_simple_3 = accuracy_doc(test_data,test_simple_3_tagged)
+print(tested_simple_3)
+```
+
+```
+> {'correct': 353650, 'false': 32064, 'acc': 0.9168710495341108}
+```
+
+## Next steps on our way to state of the art accuracy...
+
+Next, we will work on improving our identification of ambiguous known words and of unknown words.
