@@ -307,6 +307,29 @@ print(pos_freq_sort[:10]) #most frequent is NN
 Now that we know that the most frequent tag is "NN", we will update our tagger to deal with unknown words (if rather poorly).
 
 ```python
+def simple_model_3(sent_to_tag,unam_d,known_d,unknown_tag):
+	tagged = []
+	for x in sent_to_tag:
+		word = x["word"]
+		if word in unam_d: #if the word is unambiguous, assign the tag
+			tagged.append({"word": word, "pos": unam_d[word]})
+		#this is new in model 2:
+		elif word in known_d:
+			tagged.append({"word": word, "pos": known_d[word]})
+		else: #else, assign tag as "none"
+			tagged.append({"word": word, "pos": unknown_tag})
+
+	return(tagged)
+
+def simple_model_3_doc(doc_to_tag,unam_d,known_d,unknown_tag):
+	tagged = []
+	for sent in doc_to_tag:
+		tagged.append(simple_model_3(sent,unam_d,known_d,unknown_tag))
+
+	return(tagged)
+```
+
+```python
 test_simple_3_tagged = simple_model_3_doc(test_data,unambiguous,top_hits,"NN")
 print(test_simple_3_tagged[0])
 ```
