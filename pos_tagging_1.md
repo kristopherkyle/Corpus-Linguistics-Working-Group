@@ -124,7 +124,7 @@ print(word_tags["run"])
 > {'VBP': 18, 'VB': 65, 'NN': 34, 'VBN': 21} #run
 ```
 
-As we can see, words like "the" are tagged reasonably ambiguously, while words like "run" could be assigned a variety of tags.
+As we can see, words like "the" are tagged reasonably unambiguously, while words like "run" could be assigned a variety of tags.
 
 Now, we will iterate through each word and determine whether it is tagged in a reasonably unambiguous way. In the function below, we will allow for different operationalizations of "unambiguous" (our default with be .98) and will also control for the possibility that words that are unambiguous but infrequent in our corpus may be actually be ambiguous (we will set this default value at 5).
 
