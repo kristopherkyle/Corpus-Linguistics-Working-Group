@@ -17,7 +17,7 @@ Multi-word patterns in speech and writing (Biber, 2009).](https://www.jbe-platfo
 - Week 6 (Shayleen): [Corpus linguistics and language documentation: challenges for collaboration (Cox, 2011)](https://github.com/kristopherkyle/Corpus-Linguistics-Working-Group/raw/main/docs/Cox_2011.pdf)
 - Week 7 (Brittany): [Annotating the ICE corpora pragmatically –
 preliminary issues & steps (Weisser, 2017)](https://github.com/kristopherkyle/Corpus-Linguistics-Working-Group/raw/main/docs/ICE_corpus_pragmatics.pdf)
-- Week 8 (Ksenia): TBD
+- Week 8 (Ksenia): [Distributional Semantics article (Boleda, 2019) + word2vec coding in class](https://github.com/kristopherkyle/Corpus-Linguistics-Working-Group/raw/main/docs/Boleda_2019_word2vec.pdf)
 - Week 9 (Min): TBD
 - Week 10 (Sabine): TBD
 
