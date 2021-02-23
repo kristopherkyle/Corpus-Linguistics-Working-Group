@@ -23,6 +23,8 @@ preliminary issues & steps (Weisser, 2017)](https://github.com/kristopherkyle/Co
 
 ## Small Project for Weeks 7-10: Part of Speech (POS) Tagging
 - [Week 7 - Introduction to POS Tagging](pos_tagging_1.md)
+- [Week 8 - POS tagging: More features, more precise accuracy figures](pos_tagging_2.md)
+- Week 9 - Applying machine learning algorithms to POS tagging 
 
 ## Resources (readings, code, etc.)
 - [Markdown Cheatsheet](https://www.markdownguide.org/cheat-sheet/)
