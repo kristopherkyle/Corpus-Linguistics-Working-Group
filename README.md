@@ -19,7 +19,7 @@ Multi-word patterns in speech and writing (Biber, 2009).](https://www.jbe-platfo
 preliminary issues & steps (Weisser, 2017)](https://github.com/kristopherkyle/Corpus-Linguistics-Working-Group/raw/main/docs/ICE_corpus_pragmatics.pdf)
 - Week 8 (Ksenia): [Distributional Semantics article (Boleda, 2019) + word2vec coding in class](https://github.com/kristopherkyle/Corpus-Linguistics-Working-Group/raw/main/docs/Boleda_2019_word2vec.pdf)
 - Week 9 (Min): Min will be leading us through a collexeme analysis. For more about collexeme analysis check out [Gries et al., 2005 - focus on study 2](https://github.com/kristopherkyle/Corpus-Linguistics-Working-Group/raw/main/docs/Gries Hampe Shonfeld 2005.pdf) and/or [Hilpert, 2006 - shorter paper](https://github.com/kristopherkyle/Corpus-Linguistics-Working-Group/raw/main/docs/Hilpert_2006_DCCA.pdf)
-- Week 10 (Sabine): TBD
+- Week 10 (Sabine): Sabine will be discussing the calculation of syntactic complexity (and in particular, the use of [TAASSC](https://www.linguisticanalysistools.org/taassc.html)). Sabine will be referencing this article: [Kyle & Crossley (2018)](https://github.com/kristopherkyle/Corpus-Linguistics-Working-Group/raw/main/docs/Kyle_Crossley_2018_CX.pdf)
 
 ## Small Project for Weeks 7-10: Part of Speech (POS) Tagging
 - [Week 7 - Introduction to POS Tagging](pos_tagging_1.md)
