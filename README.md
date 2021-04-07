@@ -1,9 +1,36 @@
 # Corpus Linguistics Working Group
-Winter 2021
+Spring 2021
 
 University of Oregon, Linguistics Department
 
-## Schedule
+## Spring 2021 Schedule
+- Week 1 (Kris): Getting Organized
+- Week 2 (Kris): Introduction to Part of Speech (POS) Tagging
+	- Overview of how POS tagging works
+	- Begin building a basic POS tagger
+- Week 3 (Kris): Introduction to POS Tagging (pt. 2)
+	- Building better feature sets
+	- Looking at accuracy (precision and recall)
+- Week 4 (Kris, TBD): Introduction to POS Tagging (pt. 3)
+	- Building simple POS tagging algorithms
+- Week 5 (Kris, TBD): POS Tagging with Machine Learning
+	- Apply machine learning algorithms
+- Week 6 (Kris, TBD): State of the Art POS Tagging with (simple) Neural Nets
+- Week 7 (Kris, TBD): Introduction to Vector Space Semantics
+- Week 8 (Kris, TBD): Latent Semantic Analysis (LSA)
+	- Use Gensim to build an LSA vector space
+	- Calculate word similarity
+	- Calculate document similarity
+- Week 9 (Kris, TBD): Word2vec
+	- Use Gensim to build a word2vec vector space
+	- Calculate word similarity
+	- Calculate document similarity
+- Week 10 (Kris, TBD): To Infinity (and Beyond)
+
+
+
+
+## Winter 2021 Schedule
 - Week 1 (Kris): Getting Organized
 	- Homework:
 	- Sign up for a Github account
