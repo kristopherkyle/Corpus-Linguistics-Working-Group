@@ -8,6 +8,7 @@ University of Oregon, Linguistics Department
 - Week 2 (Kris): Introduction to Part of Speech (POS) Tagging
 	- Overview of how POS tagging works
 	- Begin building a basic POS tagger
+	- [Access POS Tagging Tutorial 1 here](pos_tagging_1.md)
 - Week 3 (Kris): Introduction to POS Tagging (pt. 2)
 	- Building better feature sets
 	- Looking at accuracy (precision and recall)
