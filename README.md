@@ -9,11 +9,14 @@ University of Oregon, Linguistics Department
 	- Overview of how POS tagging works
 	- Begin building a basic POS tagger
 	- [Access POS Tagging Tutorial 1 here](pos_tagging_1.md)
+	- Note, if you need to brush up on your Python skills, [check out this tutorial](https://kristopherkyle.github.io/corpus-analysis-python/py_index.html)
 - Week 3 (Kris): Introduction to POS Tagging (pt. 2)
 	- Building better feature sets
-	- Looking at accuracy (precision and recall)
+	- Building simple tagging algorithms
+	- [Access POS Tagging Tutorial 2 here](pos_tagging_2.md)
 - Week 4 (Kris, TBD): Introduction to POS Tagging (pt. 3)
-	- Building simple POS tagging algorithms
+	- Looking at accuracy (precision and recall)
+	- [Access POS Tagging Tutorial 3 here](pos_tagging_3.md)
 - Week 5 (Kris, TBD): POS Tagging with Machine Learning
 	- Apply machine learning algorithms
 - Week 6 (Kris, TBD): State of the Art POS Tagging with (simple) Neural Nets
