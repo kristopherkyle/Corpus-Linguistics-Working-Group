@@ -1,4 +1,5 @@
 # Introduction to POS Tagging
+(Kristopher Kyle; updated 2021-04-07)
 
 In this tutorial we will get starting with part of speech (POS) tagging. We will first approach the issue conceptually, and then start working on implementing our tagger.
 
@@ -17,7 +18,7 @@ Although there are a few different historic approaches to POS tagging, current P
 
 In order to create a POS tagging model, we first need some pre-tagged data. In this tutorial series, we will be using a tagged version of the Brown corpus (1-million words) with [Penn POS Tags](https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html) (which is a very common tagset for English). You can [download this dataset here](https://github.com/kristopherkyle/Corpus-Linguistics-Working-Group/raw/main/docs/_extracted_brown.zip). Note that the format of the tagged files is as follows: Each sentence is separated by two newline characters, each word-tag pair is separated by one newline character, and the word and tag are separated by a space.
 
-Below, we will load this data and format it. For ease of use (and for future application), we will represent the dataset as a list of lists, where each sentence is its own list, and words are represented as dictionaries with multiple features (e.g., "word", "pos", etc.).
+Below, we will load this data and format it. For ease of use (and for future application), we will represent the dataset as a list of dictionaries, where each sentence is its own list, and words are represented as dictionaries with multiple features (e.g., "word", "pos", etc.).
 
 ```python
 import glob
