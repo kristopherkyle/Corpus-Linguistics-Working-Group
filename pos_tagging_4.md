@@ -198,4 +198,34 @@ pred_accuracy(pred1_pos,test_pos) #0.8582905416597648
 ```
 As we can see, we get a reasonably accurate model using a relatively poor set of predictors!
 
+## Saving and loading models
+Fully featured models will take quite some time to train. Also, in the end, we want to be able to apply our models to "real" data. So, we will want to save our models for later use. We can easily do this using the pickle module (which we already used in this tutorial to load our dataset).
+
+```python
+### save and load models
+pickle.dump(vec,open("model1_vectors.pickle","wb"))
+pickle.dump(clf,open("model1.pickle","wb"))
+pickle.dump(pos_d,open("model1_pos_d.pickle","wb"))
+pickle.dump(rev_pos_d,open("model1_rev_pos_d.pickle","wb"))
+
+#load model components
+loaded_clf = pickle.load(open("model1.pickle","rb"))
+loaded_vec = pickle.load(open("model1_vectors.pickle","rb"))
+loaded_rev_pos_d = pickle.load(open("model1_rev_pos_d.pickle","rb"))
+
+#vectorize features
+test_features_loaded_vec = loaded_vec.transform(test_features)
+
+#predict with model
+pred1_1 = loaded_clf.predict(test_features_loaded_vec)
+
+#convert to POS
+pred1_1_pos = extract_pred_pos(pred1_1,loaded_rev_pos_d)
+
+#check accuracy
+pred_accuracy(pred1_1_pos,test_pos) #0.8582905416597648
+```
+
+As we can see from the code above, as long as we have the scikit-learn modules and our helper functions loaded, we will get the same results with the saved models as we did previously.
+
 Now, we need to apply our advanced accuracy analysis skills to see the strengths and weaknesses of our tagger and add features to our set!
