@@ -228,4 +228,62 @@ pred_accuracy(pred1_1_pos,test_pos) #0.8582905416597648
 
 As we can see from the code above, as long as we have the scikit-learn modules and our helper functions loaded, we will get the same results with the saved models as we did previously.
 
+## Building more feature rich models
+So far, we have created a model that doesn't have many features (and isn't particularly accurate). We need to add features in order to approach state of the art accuracy. Note that it is recommended to test the amount of time needed to train a model by using a small training set first (e.g., 1,000 words) and progressively using larger training sets (e.g., 10,000, 100,000, full training dataset).
+
+Here is an example with one feature added to the set:
+
+```python
+def simple_features2(input_sent,idx,token): #takes a sentence as input (with word and tag specified), outputs a more feature-rich version
+	features = {}
+	features["word"] = token["word"]
+	if idx == 0:
+		features["prev_pos"] = "<start>" #no previous pos
+
+	elif idx == 1:
+		features["prev_pos"] = input_sent[idx-1]["pos"] #previos pos_tag
+
+	else:
+		features["prev_pos"] = input_sent[idx-1]["pos"] #
+
+	features["suffix_tg"] = token["word"][-3:] #get last three characters
+
+	return(features)
+
+def feature_extractor2(input_data): #takes list [sents] of lists [tokens] of dictionaries [token_features], outputs a flat list of dicts [features]
+	feature_list = [] #flast list of token dictionaries
+	for sent in input_data: #iterate through sentences
+		for idx, token in enumerate(sent): #iterate through tokens
+			feature_list.append(simple_features2(sent,idx,token)) #use simple_features function to add features
+	return(feature_list)
+
+flat_features2 = feature_extractor(full_data)
+
+print(flat_features[0])
+
+train_features2 = flat_features2[:784443]
+test_features2 = flat_features2[784443:]
+
+vec2 = DictVectorizer(sparse = True)
+
+#transform categorical variables to vectors
+
+#we use .fit_transform() to create the vectors
+train_features2_vec = vec2.fit_transform(train_features2) #vectorize sample of features
+
+#and apply previously made vectors using .transform()
+test_features2_vec = vec2.transform(test_features2)
+
+clf2 = tree.DecisionTreeClassifier()
+#clf2 = clf2.fit(train_features2_vec[:1000],train_pos_num[:1000])
+#clf2 = clf2.fit(train_features2_vec[:10000],train_pos_num[:10000])
+#clf2 = clf2.fit(train_features2_vec[:100000],train_pos_num[:100000])
+clf2 = clf2.fit(train_features2_vec,train_pos_num)
+
+pred2 = clf2.predict(test_features2_vec)
+pred2_pos = extract_pred_pos(pred2,rev_pos_d)
+#check accuracy
+pred_accuracy(pred2_pos,test_pos) #over 92%!
+```
+
 Now, we need to apply our advanced accuracy analysis skills to see the strengths and weaknesses of our tagger and add features to our set!
