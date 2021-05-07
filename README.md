@@ -10,26 +10,26 @@ University of Oregon, Linguistics Department
 	- Begin building a basic POS tagger
 	- [Access POS Tagging Tutorial 1 here](pos_tagging_1.md)
 	- Note, if you need to brush up on your Python skills, [check out this tutorial](https://kristopherkyle.github.io/corpus-analysis-python/py_index.html)
-- Week 3 (Kris): Introduction to POS Tagging (pt. 2)
+- Weeks 3,4 (Kris): Introduction to POS Tagging (pt. 2)
 	- Building better feature sets
 	- Building simple tagging algorithms
 	- [Access POS Tagging Tutorial 2 here](pos_tagging_2.md)
-- Week 4 (Kris, TBD): Introduction to POS Tagging (pt. 3)
+- Week 5 (Kris, TBD): Introduction to POS Tagging (pt. 3)
 	- Looking at accuracy (precision and recall)
 	- [Access POS Tagging Tutorial 3 here](pos_tagging_3.md)
-- Week 5 (Kris, TBD): POS Tagging with Machine Learning
-	- Apply machine learning algorithms
-- Week 6 (Kris, TBD): State of the Art POS Tagging with (simple) Neural Nets
-- Week 7 (Kris, TBD): Introduction to Vector Space Semantics
-- Week 8 (Kris, TBD): Latent Semantic Analysis (LSA)
+- Week 6 (Kris, TBD): POS Tagging with Machine Learning
+	- [Apply machine learning algorithms, Part 1: Decision Trees](pos_tagging_4.md)
+- Week 7 (Kris, TBD): State of the Art POS Tagging with (simple) Neural Nets
+- Week 8 (Kris, TBD): Introduction to Vector Space Semantics
+- Week 9 (Kris, TBD): Latent Semantic Analysis (LSA)
 	- Use Gensim to build an LSA vector space
 	- Calculate word similarity
 	- Calculate document similarity
-- Week 9 (Kris, TBD): Word2vec
+- Week 10 (Kris, TBD): Word2vec
 	- Use Gensim to build a word2vec vector space
 	- Calculate word similarity
 	- Calculate document similarity
-- Week 10 (Kris, TBD): To Infinity (and Beyond)
+
 
 
 
