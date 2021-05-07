@@ -257,9 +257,9 @@ def feature_extractor2(input_data): #takes list [sents] of lists [tokens] of dic
 			feature_list.append(simple_features2(sent,idx,token)) #use simple_features function to add features
 	return(feature_list)
 
-flat_features2 = feature_extractor(full_data)
+flat_features2 = feature_extractor2(full_data)
 
-print(flat_features[0])
+print(flat_features2[0])
 
 train_features2 = flat_features2[:784443]
 test_features2 = flat_features2[784443:]
