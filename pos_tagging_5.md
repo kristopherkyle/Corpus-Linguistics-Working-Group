@@ -7,7 +7,9 @@ See [this chapter](https://web.stanford.edu/~jurafsky/slp3/8.pdf) in an NLP book
 ## Getting started (again)
 In the last tutorial, we created a decision tree classifier that achieved 92.5% accuracy using a decision tree classifier and a small dataset. In this tutorial, we will add a couple of features to our feature set. We will also add a more precise accuracy analysis function from [Tutorial 3](pos_tagging_3.md). Finally, we will add a "real world" tagging function that will allow us to tag sample sentences to further explore the strengths/weaknesses of our taggers.
 
-Note that a .zip file with all pre-trained models (except for the random forest, as the model was 1.4 GB) can be [downloaded here]()
+Note that a .zip file with all pre-trained models (except for the random forest model, which is 1.4 GB when extracted) can be [downloaded here](https://github.com/kristopherkyle/Corpus-Linguistics-Working-Group/raw/main/data/Tutorial5Data.zip).
+
+The random forest model [can be downloaded here](https://github.com/kristopherkyle/Corpus-Linguistics-Working-Group/raw/main/data/clf_rf_features3.pickle.zip).
 
 ### Feature set
 ```python
@@ -105,7 +107,7 @@ rev_pos_d = {value : key for (key, value) in pos_d.items()} # create number to P
 train_pos_num = convert_pos(train_pos,pos_d) #convert training pos tags to numbers
 ```
 
-If you DON'T want to run all of the full models, you can also load [a pre-made vector dictionary]() and the POS dictionary that was used in my version of the full models below (which are also provided)
+If you DON'T want to run all of the full models, you can also load a pre-made vector dictionary and the POS dictionary that was used in my version of the full models below (provided in download link at the beginning of this tutorial).
 
 ```python
 from sklearn.feature_extraction import DictVectorizer
@@ -238,7 +240,7 @@ def tagger(model,vec,rev_dict,extractor,token_list):
 ### Decision trees
 As briefly discussed in [Tutorial 4](pos_tagging_4.md), [decision trees](https://scikit-learn.org/stable/modules/tree.html) allow for a series of binary decisions to be made in a classification problem. To use the full version of the model (instead of training it on your computer) [you can download it here]().
 
-Note that adding features in decision tree classifiers doesn't always increase accuracy. The (slightly more complex) feature set used in this tutorial is actually less accurate than the simpler one used in the last tutorial. If you don't want to take the time to train the model, you can [download it here]().
+Note that adding features in decision tree classifiers doesn't always increase accuracy. The (slightly more complex) feature set used in this tutorial is actually less accurate than the simpler one used in the last tutorial. If you don't want to take the time to train the model, you can use the pre-trained one.
 
 ```Python
 from sklearn import tree
@@ -383,10 +385,73 @@ for x in clf_rf_accbt_sorted[:10]:
 ```
 
 ```
+NN 0.8516446511794974
+IN 0.960549645390071
+DT 0.9847889249700905
+JJ 0.7775759577278732
+NNP 0.7247111046778124
+, 0.9999219907949137
+NNS 0.9146615511098931
+. 0.9999168813897432
+RB 0.864562401459177
+PRP 0.9829504782976509
+```
+
+```python
+print(tagger(clf_rf,vec3,rev_pos_d,simple_features3,sample1))
+```
+
+```
+[[{'word': 'I', 'pos': 'PRP'},
+  {'word': 'am', 'pos': 'VBP'},
+  {'word': 'going', 'pos': 'VBG'},
+  {'word': 'on', 'pos': 'IN'},
+  {'word': 'a', 'pos': 'DT'},
+  {'word': 'run', 'pos': 'NN'},
+  {'word': 'in', 'pos': 'IN'},
+  {'word': 'my', 'pos': 'PRP$'},
+  {'word': 'pleasant', 'pos': 'JJ'},
+  {'word': 'neighborhood', 'pos': 'NN'},
+  {'word': 'right', 'pos': 'JJ'},
+  {'word': 'now', 'pos': 'RB'}]]
+```
+
+```python
+print(tagger(clf_rf,vec3,rev_pos_d,simple_features3,sample2))
+```
+
+```
+[[{'word': 'I', 'pos': 'PRP'},
+  {'word': 'feel', 'pos': 'VBP'},
+  {'word': 'very', 'pos': 'RB'},
+  {'word': 'happy', 'pos': 'JJ'},
+  {'word': 'about', 'pos': 'IN'},
+  {'word': 'my', 'pos': 'PRP$'},
+  {'word': 'decision', 'pos': 'NN'},
+  {'word': 'to', 'pos': 'TO'},
+  {'word': 'eat', 'pos': 'VB'},
+  {'word': 'pizza', 'pos': 'NN'},
+  {'word': 'from', 'pos': 'IN'},
+  {'word': 'Papa', 'pos': 'NNP'},
+  {'word': "Murphy's", 'pos': 'NNP'},
+  {'word': 'tonight', 'pos': 'NNP'}],
+ [{'word': 'Tomorrow', 'pos': 'RB'},
+  {'word': 'I', 'pos': 'PRP'},
+  {'word': 'will', 'pos': 'MD'},
+  {'word': 'take', 'pos': 'VB'},
+  {'word': 'my', 'pos': 'PRP$'},
+  {'word': 'in-laws', 'pos': 'NN'},
+  {'word': 'to', 'pos': 'TO'},
+  {'word': 'Silver', 'pos': 'VB'},
+  {'word': 'Falls', 'pos': 'NNS'},
+  {'word': 'State', 'pos': 'JJ'},
+  {'word': 'Park', 'pos': 'NN'}]]
 ```
 
 ### Maximum Entropy (Multinomial Logistic Regression)
 [Maximum Entropy (Multinomial Logistic Regression)](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression) is another fairly commonly used POS predictor model. One advantage it has over decision trees is (under many circumstances) better at using a larger set of predictors (and can use them at the same time, unlike a decision tree, which must make a number of binary decisions). Below, we employ a MaxEnt model on our feature set.
+
+Note that we use a parameters `solver` and `maxiter` to help the model run. These are not necessarily optimized - [see here for more information](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression).
 
 ```python
 from sklearn.linear_model import LogisticRegression
@@ -486,8 +551,7 @@ print(tagger(clf_mxe,vec3,rev_pos_d,simple_features3,sample2))
   {'word': 'State', 'pos': 'NNP'},
   {'word': 'Park', 'pos': 'NNP'}]]
 ```
+## Building better taggers
+So far, our best tagger achieves 94.5% accuracy on unseen data, which is not bad at all!
 
-## Applying to real-world data
-
-## Mixing approaches
-One possible way to speed up training (and prediction) is to mix approaches. For example, we could decide to only train our models on ambiguous words by
+To increase tagging accuracy, we need to a) optimize our feature set and b) tune our machine learning parameters and/or use a different ML model. Regardless of the model use, however, our feature set will likely need to be optimized in order to reach 97-98% accuracy.
