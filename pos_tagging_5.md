@@ -7,6 +7,8 @@ See [this chapter](https://web.stanford.edu/~jurafsky/slp3/8.pdf) in an NLP book
 ## Getting started (again)
 In the last tutorial, we created a decision tree classifier that achieved 92.5% accuracy using a decision tree classifier and a small dataset. In this tutorial, we will add a couple of features to our feature set. We will also add a more precise accuracy analysis function from [Tutorial 3](pos_tagging_3.md). Finally, we will add a "real world" tagging function that will allow us to tag sample sentences to further explore the strengths/weaknesses of our taggers.
 
+Note that a .zip file with all pre-trained models (except for the random forest, as the model was 1.4 GB) can be [downloaded here]()
+
 ### Feature set
 ```python
 def simple_features3(input_sent,idx,token): #takes a sentence as input (with word and tag specified), outputs a more feature-rich version
@@ -292,7 +294,7 @@ As we see above, our model is pretty good at tagging some parts of speech, and n
 ```python
 #create some sample data. Note that .split(" ") will turn our a string into a list of strings
 sample1 = ["I am going on a run in my pleasant neighborhood right now".split(" ")]
-print(tagger2(clf_dt,vec3,rev_pos_d,simple_features3,sample1))
+print(tagger(clf_dt,vec3,rev_pos_d,simple_features3,sample1))
 ```
 
 ```
@@ -418,7 +420,72 @@ clf_mxe_accbt_sorted = sorted(clf_mxe_accbt.items(),key=lambda x:getitem(x[1],'T
 for x in clf_mxe_accbt_sorted[:10]:
 	print(x[0], x[1]["f1"])
 ```
+```
+NN 0.9192649564776861
+IN 0.96795577676959
+DT 0.986210338306367
+JJ 0.8734826115485566
+NNP 0.8474950134929016
+, 0.9999479925109215
+NNS 0.9582309582309583
+. 1.0
+RB 0.9056300599468513
+PRP 0.9842024689749519
+```
 
+```python
+#create some sample data. Note that .split(" ") will turn our a string into a list of strings
+sample1 = ["I am going on a run in my pleasant neighborhood right now".split(" ")]
+print(tagger(clf_mxe,vec3,rev_pos_d,simple_features3,sample1))
+```
+
+```
+[[{'word': 'I', 'pos': 'PRP'},
+  {'word': 'am', 'pos': 'VBP'},
+  {'word': 'going', 'pos': 'VBG'},
+  {'word': 'on', 'pos': 'IN'},
+  {'word': 'a', 'pos': 'DT'},
+  {'word': 'run', 'pos': 'NN'},
+  {'word': 'in', 'pos': 'IN'},
+  {'word': 'my', 'pos': 'PRP$'},
+  {'word': 'pleasant', 'pos': 'JJ'},
+  {'word': 'neighborhood', 'pos': 'NN'},
+  {'word': 'right', 'pos': 'NN'},
+  {'word': 'now', 'pos': 'RB'}]]
+```
+
+```python
+sample2 = ["I feel very happy about my decision to eat pizza from Papa Murphy's tonight".split(" "),"Tomorrow I will take my in-laws to Silver Falls State Park".split(" ")]
+print(tagger(clf_mxe,vec3,rev_pos_d,simple_features3,sample2))
+```
+
+```
+[[{'word': 'I', 'pos': 'PRP'},
+  {'word': 'feel', 'pos': 'VBP'},
+  {'word': 'very', 'pos': 'RB'},
+  {'word': 'happy', 'pos': 'JJ'},
+  {'word': 'about', 'pos': 'IN'},
+  {'word': 'my', 'pos': 'PRP$'},
+  {'word': 'decision', 'pos': 'NN'},
+  {'word': 'to', 'pos': 'TO'},
+  {'word': 'eat', 'pos': 'VB'},
+  {'word': 'pizza', 'pos': 'NN'},
+  {'word': 'from', 'pos': 'IN'},
+  {'word': 'Papa', 'pos': 'NNP'},
+  {'word': "Murphy's", 'pos': 'NNP'},
+  {'word': 'tonight', 'pos': 'RB'}],
+ [{'word': 'Tomorrow', 'pos': 'RB'},
+  {'word': 'I', 'pos': 'PRP'},
+  {'word': 'will', 'pos': 'MD'},
+  {'word': 'take', 'pos': 'VB'},
+  {'word': 'my', 'pos': 'PRP$'},
+  {'word': 'in-laws', 'pos': 'NNS'},
+  {'word': 'to', 'pos': 'TO'},
+  {'word': 'Silver', 'pos': 'VB'},
+  {'word': 'Falls', 'pos': 'NNS'},
+  {'word': 'State', 'pos': 'NNP'},
+  {'word': 'Park', 'pos': 'NNP'}]]
+```
 
 ## Applying to real-world data
 
