@@ -242,7 +242,7 @@ As briefly discussed in [Tutorial 4](pos_tagging_4.md), [decision trees](https:/
 
 Note that adding features in decision tree classifiers doesn't always increase accuracy. The (slightly more complex) feature set used in this tutorial is actually less accurate than the simpler one used in the last tutorial. If you don't want to take the time to train the model, you can use the pre-trained one.
 
-```Python
+```python
 from sklearn import tree
 clf_dt = tree.DecisionTreeClassifier()
 
