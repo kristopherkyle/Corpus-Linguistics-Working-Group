@@ -1,5 +1,5 @@
 # Introduction to POS Tagging (Part 6  - Perceptron Tagger)
-(Kristopher Kyle updated 2021-05-18)
+(Kristopher Kyle - Updated 2021-05-19)
 
 In this tutorial, we will work with the Perceptron Tagger, which can approach state of the art accuracy, trains and tags quickly, and is reasonably simple. The original creator of this implementation (Mathew Honnibal, who created [Spacy](https://spacy.io/), wrote up a [nice explanation of how the Perceptron Tagger works](https://explosion.ai/blog/part-of-speech-pos-tagger-in-python) back in 2013.
 

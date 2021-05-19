@@ -1,5 +1,5 @@
 # Introduction to POS Tagging (Part 5  - More Machine Learning)
-(Kristopher Kyle updated 2021-05-14)
+(Kristopher Kyle - Updated 2021-05-14)
 
 Now that we have worked through the basics of training and testing machine learning-based part of speech (POS) tagging models in scikit-learn, we will test out some other machine learning algorithms.
 
