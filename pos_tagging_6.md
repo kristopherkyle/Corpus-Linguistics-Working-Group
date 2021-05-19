@@ -105,6 +105,7 @@ test_data = [x for sent in full_data if sent not in train_data]
 ```
 
 ## Training and Testing the Perceptron Tagger
+We will import two versions of the Perceptron Tagger that differ with regard to the number of predictor features used. Note that each model is saved in its own .py file - we can import .py files that are in our working directory by using the .py filename (with out the .py extension). The first version of the tagger is saved in the file "simple_perceptron.py".
 
 ### Training the Perceptron Tagger (SimpleTron)
 ```python
@@ -119,9 +120,9 @@ tagger = PerceptronTagger(load = True, PICKLE = "small_feature_Browntrain_percep
 ```
 
 ### Testing the Perceptron Tagger (SimpleTron)
+To test the tagger, we will strip the tags from our test set and then tag one sentence at a time. As we see below, the simple version of the tagger achieves 93.2% macro accuracy.
 
 ```python
-
 ### strip tags if necessary, apply tagger
 def test_tagger(test_sents,model,tag_strip = False, word_loc = 0):
 
@@ -159,6 +160,8 @@ tagged_test = test_tagger(test_data,tagger,tag_strip = True)
 
 print(simple_accuracy_sent(tagged_test,test_data)) #0.9320666399778277
 ```
+
+Below, we also adapt previously used code to check the by-tag accuracy of our tagger:
 
 ```python
 def prec_rec(accuracy_dict):
@@ -280,4 +283,9 @@ def tag_strings(input_string,trained_tagger):
 
 for sents in tag_strings("I really love pizza. Do you love pizza?", tagger2):
 	print(sents)
+```
+
+```
+[('I', 'PRP'), ('really', 'RB'), ('love', 'VBP'), ('pizza', 'NN'), ('.', '.')]
+[('Do', 'VBP'), ('you', 'PRP'), ('love', 'VB'), ('pizza', 'NN'), ('?', '.')]
 ```
