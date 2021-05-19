@@ -1,4 +1,5 @@
 # Introduction to POS Tagging (Part 5  - More Machine Learning)
+(Kristopher Kyle updated 2021-05-14)
 
 Now that we have worked through the basics of training and testing machine learning-based part of speech (POS) tagging models in scikit-learn, we will test out some other machine learning algorithms.
 
@@ -143,53 +144,53 @@ def pred_accuracy(pred,gold):
 			f+=1
 	return(c/(c+f))
 
-	#code for precision, recall, and F1 formulas
-	def prec_rec(accuracy_dict):
-		accuracy_dict["TC"] = accuracy_dict["TP"] + accuracy_dict["FN"]
-		if accuracy_dict["TP"] + accuracy_dict["FN"] == 0:
-			accuracy_dict["recall"] = 0
+#code for precision, recall, and F1 formulas
+def prec_rec(accuracy_dict):
+	accuracy_dict["TC"] = accuracy_dict["TP"] + accuracy_dict["FN"]
+	if accuracy_dict["TP"] + accuracy_dict["FN"] == 0:
+		accuracy_dict["recall"] = 0
+	else:
+		accuracy_dict["recall"] = accuracy_dict["TP"]/(accuracy_dict["TP"] + accuracy_dict["FN"])
+
+	if accuracy_dict["TP"] +accuracy_dict["FP"] == 0:
+		accuracy_dict["precision"] = 0
+	else:
+		accuracy_dict["precision"] = accuracy_dict["TP"]/(accuracy_dict["TP"] +accuracy_dict["FP"])
+	if accuracy_dict["precision"] == 0 and accuracy_dict["recall"] == 0:
+		accuracy_dict["f1"] = 0
+	else:
+		accuracy_dict["f1"] = 2 * ((accuracy_dict["precision"] * accuracy_dict["recall"])/(accuracy_dict["precision"] + accuracy_dict["recall"]))
+
+
+#code to apply the above function to a full dataset
+def tag_prec_rec_flat(tested,gold):
+	tag_d = {}
+
+	for idx, item in enumerate(gold):
+		### convert formats, as needed: ###
+		if type(item) == str:
+			item = {"pos" : item}
+
+		if type(tested[idx]) == str:
+			tested[idx] = {"pos" : tested[idx]}
+
+		### update tag dictionary as needed ###
+		if item["pos"] not in tag_d:
+			tag_d[item["pos"]] = {"TP":0,"FP":0,"FN":0}
+		if tested[idx]["pos"] not in tag_d:
+			tag_d[tested[idx]["pos"]] = {"TP":0,"FP":0,"FN":0}
+
+		### tabulate accuracy ###
+		if item["pos"] == tested[idx]["pos"]:
+			tag_d[item["pos"]]["TP"] += 1
 		else:
-			accuracy_dict["recall"] = accuracy_dict["TP"]/(accuracy_dict["TP"] + accuracy_dict["FN"])
+			tag_d[item["pos"]]["FN"] += 1
+			tag_d[tested[idx]["pos"]]["FP"] += 1
 
-		if accuracy_dict["TP"] +accuracy_dict["FP"] == 0:
-			accuracy_dict["precision"] = 0
-		else:
-			accuracy_dict["precision"] = accuracy_dict["TP"]/(accuracy_dict["TP"] +accuracy_dict["FP"])
-		if accuracy_dict["precision"] == 0 and accuracy_dict["recall"] == 0:
-			accuracy_dict["f1"] = 0
-		else:
-			accuracy_dict["f1"] = 2 * ((accuracy_dict["precision"] * accuracy_dict["recall"])/(accuracy_dict["precision"] + accuracy_dict["recall"]))
+	for x in tag_d:
+		prec_rec(tag_d[x])
 
-
-	#code to apply the above function to a full dataset
-	def tag_prec_rec_flat(tested,gold):
-		tag_d = {}
-
-		for idx, item in enumerate(gold):
-			### convert formats, as needed: ###
-			if type(item) == str:
-				item = {"pos" : item}
-
-			if type(tested[idx]) == str:
-				tested[idx] = {"pos" : tested[idx]}
-
-			### update tag dictionary as needed ###
-			if item["pos"] not in tag_d:
-				tag_d[item["pos"]] = {"TP":0,"FP":0,"FN":0}
-			if tested[idx]["pos"] not in tag_d:
-				tag_d[tested[idx]["pos"]] = {"TP":0,"FP":0,"FN":0}
-
-			### tabulate accuracy ###
-			if item["pos"] == tested[idx]["pos"]:
-				tag_d[item["pos"]]["TP"] += 1
-			else:
-				tag_d[item["pos"]]["FN"] += 1
-				tag_d[tested[idx]["pos"]]["FP"] += 1
-
-		for x in tag_d:
-			prec_rec(tag_d[x])
-
-		return(tag_d)
+	return(tag_d)
 ```
 
 ### Tagging "real world" data

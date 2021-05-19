@@ -22,6 +22,7 @@ University of Oregon, Linguistics Department
 - Week 7 (Kris, TBD): POS Tagging with Machine Learning (part 2)
 	- [Apply machine learning algorithms, Part 2: Random Forests and Maximum Entropy](pos_tagging_5.md)
 - Week 8 (Kris, TBD): State of the Art POS Tagging with (simple) Neural Nets
+	- [Apply a Simple Neural Net](pos_tagging_6.md)
 - Week 9 (TBD): TBD
 - Week 10 (TBD): TBD
 
