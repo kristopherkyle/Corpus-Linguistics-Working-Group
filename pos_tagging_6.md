@@ -1,5 +1,5 @@
 # Introduction to POS Tagging (Part 6  - Perceptron Tagger)
-(Kristopher Kyle - Updated 2021-05-19)
+(Kristopher Kyle - Updated 2021-05-21)
 
 In this tutorial, we will work with the Perceptron Tagger, which can approach state of the art accuracy, trains and tags quickly, and is reasonably simple. The original creator of this implementation (Mathew Honnibal, who created [Spacy](https://spacy.io/), wrote up a [nice explanation of how the Perceptron Tagger works](https://explosion.ai/blog/part-of-speech-pos-tagger-in-python) back in 2013.
 
@@ -84,6 +84,7 @@ To train the Perceptron Tagger, data should be formatted as a list of sentences 
 
 ```python
 import random
+import pickle
 random.seed(10) #set seed so we get the same results each time
 
 def tupler(lolod):
@@ -101,7 +102,7 @@ full_data = tupler(pickle.load(open("brown_sents_list.pickle","rb")))
 ### create training and test sets ###
 train_data = random.sample(full_data,34912) #create training set with 67% of sentences
 
-test_data = [x for sent in full_data if sent not in train_data]
+test_data = [sent for sent in full_data if sent not in train_data]
 ```
 
 ## Training and Testing the Perceptron Tagger
@@ -116,11 +117,11 @@ tagger = SimpleTron(load=False) #define tagger
 tagger.train(train_data,save_loc = "small_feature_Browntrain_perceptron.pickle") #train tagger on train_data, save the model as "small_feature_Browntrain_perceptron.pickle"
 
 #load pretrained model (if needed)
-tagger = PerceptronTagger(load = True, PICKLE = "small_feature_Browntrain_perceptron.pickle")
+tagger = SimpleTron(load = True, PICKLE = "small_feature_Browntrain_perceptron.pickle")
 ```
 
 ### Testing the Perceptron Tagger (SimpleTron)
-To test the tagger, we will strip the tags from our test set and then tag one sentence at a time. As we see below, the simple version of the tagger achieves 93.2% macro accuracy.
+To test the tagger, we will strip the tags from our test set and then tag one sentence at a time. As we see below, the simple version of the tagger achieves 94.5% macro accuracy.
 
 ```python
 ### strip tags if necessary, apply tagger
@@ -143,7 +144,6 @@ def test_tagger(test_sents,model,tag_strip = False, word_loc = 0):
 
 	return(tagged_sents)
 
-#Check accuracy
 def simple_accuracy_sent(gold,test): #this takes a hand-tagged list (gold), and a machine-tagged text (test) and calculates the simple accuracy
 	correct = 0 #holder for correct count
 	nwords = 0 #holder for total words count
@@ -157,8 +157,7 @@ def simple_accuracy_sent(gold,test): #this takes a hand-tagged list (gold), and 
 	return(correct/nwords)
 
 tagged_test = test_tagger(test_data,tagger,tag_strip = True)
-
-print(simple_accuracy_sent(tagged_test,test_data)) #0.9320666399778277
+print(simple_accuracy_sent(tagged_test,test_data)) #0.9453921817719865
 ```
 
 Below, we also adapt previously used code to check the by-tag accuracy of our tagger:
@@ -180,7 +179,6 @@ def prec_rec(accuracy_dict):
 	else:
 		accuracy_dict["f1"] = 2 * ((accuracy_dict["precision"] * accuracy_dict["recall"])/(accuracy_dict["precision"] + accuracy_dict["recall"]))
 
-#code to apply the above function to a full dataset
 def tag_prec_rec(tested,gold):
 	tag_d = {}
 
@@ -237,7 +235,7 @@ from full_perceptron import PerceptronTagger as FullTron
 
 tagger2 = FullTron(load=False)
 
-tagger2.train(train_tup,save_loc = "full_feature_Browntrain_perceptron.pickle")
+tagger2.train(train_data,save_loc = "full_feature_Browntrain_perceptron.pickle")
 
 #load pretrained model (if needed)
 tagger2 = FullTron(load = True, PICKLE = "full_feature_Browntrain_perceptron.pickle")
