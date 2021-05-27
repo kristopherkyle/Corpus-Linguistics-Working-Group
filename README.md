@@ -24,7 +24,7 @@ University of Oregon, Linguistics Department
 - Week 8 (Kris, TBD): State of the Art POS Tagging with (simple) Neural Nets
 	- [Apply a Simple Neural Net](pos_tagging_6.md)
 - Week 9 (Kris): Dealing with Languages other than English
-	-[Working .conllu datasets](pos_tagging_7.md)
+	- [Working .conllu datasets](pos_tagging_7.md)
 - Week 10 (TBD): TBD
 
 
