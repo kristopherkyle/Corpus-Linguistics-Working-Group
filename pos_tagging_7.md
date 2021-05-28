@@ -181,7 +181,7 @@ simple_accuracy_sent(english_test,tagged_en_test2) #0.936436849341976
 
 ### Korean
 
-First, we will train a model based on the simple feature set. This model achieves 84.7% accuracy for universal pos tags on the test set. Despite having more training data, the model is less accurate on the Korean data than the English data. This may mean that the feature set (or prediction algorithm) needs to be tuned for Korean.
+First, we will train a model based on the simple feature set. This model achieves 84.7% accuracy for universal pos tags on the test set. Despite having more training data, the model is less accurate on the Korean data than the English data. This may mean that the feature set (or prediction algorithm) needs to be tuned for Korean. Note that if you get an encoding error, you will have to explicitly set "utf-8" as the encoding when using the `open()` function (e.g., `open(filename, encoding = "utf-8")`).
 
 ```python
 #load Korean data and convert to token tuples
